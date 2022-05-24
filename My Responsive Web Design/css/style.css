@@ -1,0 +1,53 @@
+/* レスポンシブは今の時代は基本モバイルファースト
+モバイルのブレイクポイントは一番最初なので共通のスタイルとして書く
+変更したい部分だけブレイクポイントで書く */
+/* cssは後から書かれたもので上書きされる仕様だから */
+
+
+/* common 共通スタイル*/
+/* small screen */
+body{
+    margin: 0;
+}
+
+aside{
+    display: none;
+}
+
+.image{
+    background: pink;
+    height: 100px;
+}
+
+.text{
+    background: silver;
+    height: 100px;
+}
+
+/* medium screen */
+@media (min-width: 600px){
+    section{
+        display: flex;
+    }
+    .image{
+        width: 200px;
+    }
+    .text{
+        flex: 1;
+    }
+}
+
+
+/* large screen */
+@media (min-width: 800px){
+    section{
+        width: 800px;
+        margin: 0 auto;
+    }
+    aside{
+        display: block;
+        background: plum;
+        width: 160px;
+    }
+}
+ 

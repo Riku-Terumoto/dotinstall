@@ -1,0 +1,168 @@
+/* プロパティは継承するのとしないのがある */
+/* もし継承されないプロパティを継承したい場合はinheritを使う */
+
+/* cssは後からスタイルをつけたやつが反映される */
+
+/* コンテンツの幅width、コンテンツの高さheight、行間の高さはline-height 
+line-heightは文字の大きさと上下の余白を合わせた高さのことを言います。
+heigthだと高さを指定しただけだがline-heightだと指定された高さから文字の大きさを引いた値を割る2して出た値を上下の余白に均等に割り振る挙動になる
+⇨paddinとborderを含めた幅と高さにしたい場合はbox-sizing: border-box;とする*/
+
+/* paddingはborderの内側、marginはborderの外側 */
+
+/* ネスト構造で子要素の幅、高さを50%にしたときは親要素の幅、高さからみて50%になる */
+
+/* marginの相殺 */
+/* ⇨垂直方向でmarginが重なると小さい方が打ち消される */
+/* 要素1がmargin-bottom20px(上)
+要素2がmargin-top10px(下)
+要素2のmarginが消える */
+
+/* display: block;縦方向
+⇨div,h1,p,section
+ ⇨デフォルトでwidthが親要素の幅いっぱい。heightはコンテンツ幅。
+  ⇨幅、高さ指定可能
+display:inline;横方向
+⇨img,span,a,input */
+ /* ⇨デフォルトでwidthはコンテンツ幅、heightはコンテンツの高さ */
+  /* ⇨幅と高さ指定不可 */
+  /* 上記のいい所どりがinline-block */
+
+/* positionの挙動
+staticは初期の位置
+relativeはstaticの位置から
+動かせる＝相対配置
+fixedはwindowの左端から固定され、staticの位置から外れるので要素が最初から無かったようになる。その為要素が詰められる */
+/* absoluteは絶対配置。親要素がstaticかそれ以外かで挙動が変わる
+・staticの場合はwindowの左端から配置
+・static以外の場合は親要素から配置 */
+
+/* z-indexの挙動
+z-indexはposition:static;以外に使える。 */
+/* 重なりを変えるプロパティだが何も指定しないで絶対配置をすると後から書かれた要素が上にくる */
+
+/* width:calc( (100% - 40px) % 3 );値を計算してくれる */
+/* ・四則演算は+/-*とする */
+/* ・演算子の前後は必ず半角空白を入れる */
+
+/* 属性セレクタは以下の書き方をする
+[target]{
+    font-weight: bold;
+}
+
+[href="#top"]{
+
+} 
+⇨完全一致*/
+/* ⇨[href^="https"]は前方一致でhttpsから始まるものが対象  */
+/* ⇨[href$="dotinstall"]は後方一致 */
+/* ⇨[href*="com"]は部分一致 */
+
+/* 複数セレクタ
+.info , p はそれぞれに一致するもの全て
+h1.info はh1かつclass属性がinfoのもの※要素セレクタ同士は繋げられない例）h1h2
+main > h1 はmainの直下のもの
+p + p は同じ階層の中でpの直後にあるpを指す
+⇨隣接する要素に使う */
+
+/* 疑似要素はcssだけで要素を追加できる */
+/* 疑似要素ではcontentプロパティが必須 */
+
+
+/* カスタムデータ属性
+HTMLでは「data-」で始まっていれば独自の属性を付けてもいいよというルールがある
+例）  <h1 data-subtitle="- Main Title">見出し</h1>
+疑似要素のcontentプロパティの値にカスタムデータ属性を入れる
+例）
+h1::after,
+h2::after {
+    content: attr(data-subtitle);
+} */
+
+/* 疑似クラスは特定の状態でスタイルを変える
+疑似要素ではコロンが二つだったが疑似クラスではコロンは一つ */
+/* :hover */
+/* :nth-child() */
+/* nは自然数、oddは奇数、evenは偶数 */
+/* :first-child 最初
+:last-child 最後 */
+/* :nth-of-type() */
+/* nth-childは順番だけだがnth-of-typeは順番かつ要素も見る */
+/* :emptyは空の要素にだけスタイルを適用する場合 */
+/* :not()は否定 */
+/* notの引数にはセレクタを渡す。疑似クラスも含む */
+
+/* セレクタの詳細度 */
+/* [id],[class,属性,疑似クラス],[要素,擬似要素]
+上記の左から順にセレクタとして指定されているかを確認する。
+セレクタの合計ではなく、左から見て有無を確認する
+例)
+A: h1{}
+B: h1#main.box{}
+C: section > #main.title{}
+D: section#about > h1
+まずidがあるのがA以外なのでAは脱落。
+次にクラスがあるのがBとCなのでDは脱落。
+最後に要素はBとCどちらにもあるので優先度が高いのはBとCになる。
+優先度が同じな場合は後から書いた方が優先されるので最も優先度が高いのはCになる。 */
+/* htmlのstyle属性が別シートのcssより強い
+王者は!importantです */
+/* 複数の場合は後から書かれたのが優先 */
+
+/* flexbox */
+/* 親要素のことをflex container
+子要素をflex itemと呼ぶ */
+/* flex containerの横を主軸、縦を交差軸と呼ぶ */
+/* flex-direction: row;は主軸が左から並ぶ
+flex-direction: row-reverse;は主軸が右から並ぶ */
+/* flex-direction: column;は主軸と交差軸が逆になる。縦が主軸 になるから上から並ぶ*/
+/* flex-direction: column-reverse;は主軸と交差軸が逆になる。縦が主軸 になるから下から並ぶ*/
+
+/* justify-contentは主軸に沿って要素をどう揃えるか指定する */
+/* flex-startは主軸の始点=左揃え
+flex-endは主軸の始点=右揃え
+flex-centerは主軸の始点=中央揃え
+spac-betweenは主軸の始点=要素の間に余白が均等に配置される
+※主軸によって変わる */
+
+/* align-itemは交差軸に沿ってどう要素をそら得るかの指定になる */
+/* justify-contentの逆 */
+
+/* flex-wrapは要素の幅がコンテナの幅を超える場合に使える */
+/* wrapは折り返す、nowrapは折り返さない、wrap-reverseは主軸と交差軸の向きが反転する */
+
+/* align-contentは交差軸方向で要素を揃える場合 */
+
+/* flex-directionとflex-wrapはflex-flowで一括指定できる */
+/* 上記はflex containerについてのプロパティになる */
+
+/* 次はflex itemについてのプロパティ */
+/* align-selfはflex itemを交差軸に沿って指定する */
+/* orderはflex itemの順番を指定する */
+
+/* flex-basisはflex itemのサイズを指定する */
+/* flex-growは主軸方向に余白があるときそれぞれの要素をどれだけ伸ばすかを指定する（比率指定する例1:1:2） */
+/* flex-shrinkは主軸方向にコンテナの幅が足りない場合に指定する（比率指定する） */
+
+/* flexプロパティでgrow,shrink,basesを一括指定できる */
+/* ※flex boxではmarginの相殺は起きない */
+
+
+
+section{
+    display: flex;
+    margin-bottom: 64px;
+    justify-content: space-between;
+}
+
+section:nth-child(even){
+    flex-direction: row-reverse;
+}
+
+.pic{
+    width: 180px;
+}
+
+.desc{
+    width: calc(100% - 180px - 32px);
+}

@@ -1,0 +1,113 @@
+/* グリッドは格子状のレイアウトのことで、こちらのマス目に要素を配置していくことで、こうした複雑なレイアウトでも簡単に組むことができる */
+/* display: grid;はグリッド指定 */
+/* grid-template-columnsは列の幅
+grid-template-rowsは行の高さ */
+/* 以下だと3列2行のグリッドになる
+grid-template-columns: 100px 100px 100px;
+grid-template-rows: 100px 100px; */
+
+/* デフォルトだと左上から順番に並べられる */
+
+/* fractionという値を指定することで可変値にすることができる
+プロパティ値の指定は1「fr」となる */
+/* fractionを二つ指定すると絶対値以外の余白を比率で割り当てることになる */
+
+/* gapはグリッド間に余白を割り当てる */
+/* ⇨列と行で余白を変えたい場合は二つ指定。縦が先 */
+
+/* 列や行の数が100や200欲しいとなったときプロパティ値に全て記載するのは大変なのでrepeat()を使う。例 repeat(4,100px) */
+/* 親要素の幅に入る限りという設定はrepeat(auto-fill,100px)とする */
+/* 新しい列ができるまで余白いっぱいまで均等に幅を広げたい場合は
+repeat(auto-fill,minmax(100px, 1fr));とする。最低でも100pxを維持しそれ以上は可変値にするという設定 */
+/* ブラウザの幅が広くなって配置する要素が無くなったときに余白ができるが余白を作りたくない場合はrepeat(auto-fit,minmax(100px, 1fr))とする */
+
+/* grid-auto-rowsはgrid-temlate-rowsで指定していない行ができた場合に自動で反映してくれる
+grid-auto-rows: 100px; */
+
+/* 好きなところに要素を配置したい場合
+グリッドラインという横の線（grid-row）と縦の線（grid-column）を指定して配置する。指定されなかった値は今までの順番で配置される。
+左から1、2、3。右から-3、-2、-3と指定する。 */
+/* 範囲指定もできる開始の終了のグリッドラインを指定する。例grid-column: 2 / 4;*/
+/* 開始だけグリッドラインで指定して終了はマスで指定することもできる
+grid-column: 2 / span 2;と書く */
+
+
+/* グリッドラインは名前を付けることができる
+grid-template-column: 100px [target-start] 100px 100px [target-end]; */
+/* 親要素の名前が-start,-endとなっていれば子要素で指定する場合、それより前の名前だけ指定すれば反映される。
+以下は同じ内容
+grid-column: target-start /target-end;
+grid-column: target; */
+
+/* 並び順操作はgrid-auto-flowで指定する。
+rowは初期値、左上から列ごとに並べる場合はcolumn。 columnにした場合は列と行が逆になる*/
+/* もし指定した範囲からはみ出る場合は次に入る場所に移動する
+どこにも入れなかった場合ははみ出した部分が永遠に続く。divの場合。
+
+空いている余白に要素を詰めて並べたい時はdenseを使う
+grid-auto-flow: column dense; */
+
+/* gird-template-areaはひとマスずつ指定できる。
+指定する時はL字型や飛び石で指定すると反映されない。
+全て四角形でないといけない。
+親要素に文字列で指定する。以下のアルファベットは名前。同じアルファベットは同じ要素という意味。子要素には名前を指定するだけで良い。
+grid-template-areas:
+    "r r r y y"
+    "r r r y y"
+    "c c g y y"
+    "c c b y y"; 
+
+grid-area: r;
+*/
+/* 要素を指定したくない場合はピリオドを入れる。
+grid-template-areas:
+    "r r r y y"
+    "r r r y y"
+    "c c g y y"
+    "c c b . .";  */
+
+/* flex boxと同じようにjusify系やalign系の位置指定プロパティでレイアウトできる。 */
+
+
+body{
+    margin: 0;
+}
+
+.container{ 
+    display: grid;
+
+    grid-template-columns: repeat(3,100px);
+    grid-template-rows: repeat(4,100px);
+    grid-auto-flow: column dense;
+    grid-auto-columns: 100px;
+    grid-template-areas:
+    "r r r y y"
+    "r r r y y"
+    "c c g y y"
+    "c c b . .";
+}
+
+.box1{
+    background: hsl(0, 60%, 60%);
+    grid-area: r;
+}
+.box2{
+    background: hsl(60, 60%, 60%);
+    grid-column: span 2;
+    grid-row: span 2;
+    grid-area: y;
+}
+.box3{
+    background: hsl(120, 60%, 60%);
+    grid-column: span 2;
+    grid-row: span 2;
+    grid-area: g;
+}
+.box4{
+    background: hsl(180, 60%, 60%);
+    grid-area: c;
+}
+.box5{
+    background: hsl(240, 60%, 60%);
+    grid-area: b;
+}

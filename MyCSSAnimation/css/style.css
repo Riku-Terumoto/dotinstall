@@ -1,0 +1,79 @@
+/* transformプロパティは要素を変形させることができる
+translateは移動、rotateは回転、scaleはリサイズ
+上記の変形は同時に指定可能 */
+/* 起点を変更したい場合はtransform-origin */
+/* デフォルトだと図形の中心から回転するのに対して図形の左上を起点に回転させたい場合はtop leftと指定をする必要がある */
+/* transform-originはrotate,scaleに対して有効だがtranslateに対しては影響を受けない仕様となっている */
+/* ページの読み込み時にも transition が効いてしまうこの Chrome のバグですが、回避方法としては、なんらかのスクリプトを読み込めば OK です。
+簡単にしたいなら script タグの間に半角空白を入れてあげてください。 */
+/* transition-durationはアニメーションの時間、transition-delayはアニメーションが始まるまでの時間 */
+/* transition-timing-function */
+/* easeは徐々にゆっくり、ease-outは徐々に早く、ease-in-outはeaseよりも最初がゆっくり,linearは最初から最後まで同じ速度 */
+/* ease-out の指定がここにありますが、こちらのアイコンをクリックすると、エディターで開くことができます。こちらのツールで直接いじることもできて、ちょっと癖があるのですが、こちらの丸を引っ張って、曲線を操作することができます。
+cubic-bezier の値をコピーで使える */
+/* transition-property,duration,timing-functionを一括指定するプロパティはtransitionです */
+/* durationとdelayの両方の時間も指定できる。最初に書いた時間がduration,次がdelayになる */
+
+/* @keyframesの設定 */
+/* まず名前を決めて、その後にどの地点でどのスタイルにしたいかを指定すればOK */
+/* 変化前のスタイルにanimation-nameプロパティで名前、animation-durationでアニメーションの秒数、animation-delayでアニメーション開始までの秒数を指定すればOK */
+/* animation-fill-modeでアニメーション終了時点の場所に居続ける */
+/* animation-iteration-countはアニメーションを繰り返すときに使う。無限の場合はinfinite */
+/* animation-directionはアニメーションを折り返す */
+/* →alternateが折り返し、reverseが逆再生 alternate-reverseが逆再生折り返し*/
+/* animation-timing-functionはtrasition-timing-funcitonと同じ */
+/* animationプロパティで一括指定することができる。※順不同 */
+/* transitionと同様に時間指定が二つ出てきた時、最初がdurationで次がdelayになる。 */
+
+/* keyframesで0%と100%だけの場合は0%をfrom 100%をtoにしても同じになる */
+/* linearは等速 */
+/* keyframesで全く同じ設定の時は省略できる
+20%,80%{
+    transform: none;
+    opacity: 1;
+} */
+
+
+
+body{
+    padding: 64px;
+}
+
+.message{
+    width: 300px;
+    padding: 8px 16px;
+    background: #2c2c2c;
+    color: #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .2);
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+
+    animation: popup 2s forwards;
+}
+
+@keyframes popup {
+    0%{
+        transform: translateY(20px);
+        opacity: 0;
+        animation-timing-function: ease-out;
+    }
+    20%,80%{
+        transform: none;
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(20px);
+        opacity: 0;
+        pointer-events: none;
+    }
+}
+
+button{
+    width: 300px;
+    padding: 8px 16px;
+    position: fixed;
+    right: 32px;
+    bottom: 32px;
+}

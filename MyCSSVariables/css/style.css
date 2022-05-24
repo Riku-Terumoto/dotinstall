@@ -1,0 +1,33 @@
+/* CSS変数の名前は--で始める。使う時はvar関数を使用する。
+--my-color: orange;
+color: var(--my-color); */
+/* CSSの変数名は大文字と小文字を区別する。 */
+/* 変数に値が指定されていなかった場合のデフォルト値も設定可能。カンマ区切りで値を渡す。
+color: var(--My-color, orange); */
+/* CSS変数は宣言したセレクタ内でしか使えない。他セレクタでも使いたい場合は使いたい要素の親要素に
+指定してあげることで継承が可能。文書全体で使いたい場合はhtmlタグに指定すれば使える。ただそうゆう時は:root{}で指定することが可能。 */
+/* CSS変数はプロパティの値に使えるのでプロパティ名の方で書く際は宣言の時のみ。 */
+/* CSS変数では後から単位をつけることはできない。宣言時のみ。
+どうしても後からつけたい場合はcalc関数で*1pxとする必要がある。
+margin-left: calc(var(--my-margin-left) * 1px); */
+
+:root{
+    --my-hue: 50;
+}
+
+body{
+    background: hsl(var(--my-hue), 40%, 95%);
+}
+
+h1,p{
+    color: hsl(var(--my-hue), 35%, 55%);
+}
+
+.btn{
+    color: #fff;
+    width: 100px;
+    padding: 8px;
+    border-radius: 4px;
+    text-align: center;
+    background: hsl(calc(var(--my-hue) + 60), 50%, 50%);
+}

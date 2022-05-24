@@ -1,0 +1,97 @@
+/* img 要素はデフォルトでベースラインに沿って配置されるため、アルファベットのgとかだとベースラインを超えるので下に余分な余白があらかじめついている */
+/* img要素をvertical-alignでbaseline以外に指定することで解消される
+img要素はインライン要素のため、通常ではvertical-alignがbaselineに指定されています。この状態で画像と一緒にテキストが並ぶと、フォントのベースラインと画像の下部が揃っていることがわかります。 */
+
+
+
+/* common */
+
+body{
+    margin: 0;
+}
+
+img{
+    vertical-align: bottom;
+}
+
+h1,h2,p{
+    margin: 0;
+}
+
+/* headr */
+
+header{
+    background: #efefef;
+}
+
+header .container{
+    width: 400px;
+    margin: 0 auto;
+    padding: 32px 0;
+    display: flex;
+    align-items: center;
+}
+
+header .container div + div{
+    margin-left: 32px;
+}
+
+header h1{
+    font-weight: normal;
+    font-size: 24px;
+}
+
+header ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header ul li + li{
+    margin-left: 8px;
+}
+
+header .icon{
+    border-radius: 50%;
+}
+
+
+
+
+/* main */
+
+main .container{
+    width: 400px;
+    margin: 0 auto;
+}
+
+main h1{
+    font-size: 24px;
+    font-weight: normal;
+    text-align: center;
+    padding: 60px 0;
+}
+
+main h2{
+    font-weight: normal;
+    font-size: 20px;
+    margin-top: 16px;
+}
+
+main P{
+    line-height: 1.8;
+    margin-top: 16px;
+}
+
+main section + section{
+    margin-top: 60px;
+}
+
+/* footer */
+
+footer{
+    padding: 60px 0;
+    text-align: center;
+    color: #aaa;
+}
