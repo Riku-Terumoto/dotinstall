@@ -1,0 +1,19 @@
+h1{
+    font-size: 24px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* ⭐️githubでサイト公開する方法
+１：リポジトリを作る
+２：Upload filesで公開したいサイトのファイルをドラッグ&ドロップ
+３：インターネットに公開する設定
+⇨設定
+　⇨GitHub Pagesの項目に移動
+　　⇨ブランチをmain,root,saveを順に押下するとURLが発行される
+　　　⇨URLをタブで開く */
+
+/* ユーザサイトはgithub.ioとつける
+プロジェクトサイトは自由に名前をつけれる */
+
+/* 更新したい際は2の手順を再度行う */
