@@ -92,11 +92,25 @@ header button{
 }
 
 /* hero */
+/* このように絶対配置(absolute)して top や left などの位置を指定しない場合、通常の配置フローから外れつつ、そこから動かないという指定になるのでこれで全ての画像が同じ位置で重なるはずです。 */
+/* これらの画像は絶対配置されて通常の配置フローから外れたので、次に来る要素が下に潜り込んでしまっている */
+/* heroエリアに高さを指定することで要素が押し戻される↓ */
+
+.hero{
+    height: 400px;
+}
 
 .hero img{
     width: 100%;
     height: 400px;
     object-fit: cover;
+    position: absolute;
+    opacity: 0;
+    transition: opacity 1s;
+}
+
+.hero img.current{
+    opacity: 1;
 }
 
 /* products */

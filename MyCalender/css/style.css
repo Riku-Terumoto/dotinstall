@@ -1,0 +1,46 @@
+body{
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+}
+
+table{
+    border: 2px solid #eee;
+    /* tableタグのセル間が空いてしまっている事象に以下をすると間がつまる */
+    border-collapse: collapse;
+}
+
+thead,
+tfoot{
+    background: #eee;
+}
+
+th,
+td{
+    padding: 8px;
+    text-align: center;
+}
+
+tbody td:first-child{
+    color: red;
+}
+tbody td:last-child{
+    color: blue;
+}
+tfoot{
+    font-weight: bold;
+}
+
+td.disabled{
+    opacity: .3;
+}
+
+td.today{
+    font-weight: bold;
+}
+
+#prev,
+#next,
+#today{
+    cursor: pointer;
+    user-select: none;
+}

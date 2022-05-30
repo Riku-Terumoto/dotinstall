@@ -1,0 +1,31 @@
+body{
+    background: #efefef;
+}
+
+#btn{
+    width: 200px;
+    height: 200px;
+    background: #ef454a;
+    border-radius: 50%;
+    margin: 30px auto;
+    text-align: center;
+    line-height: 200px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 42px;
+    cursor: pointer;
+    /* x方向、y方向、カラー */
+    box-shadow: 0 10px #d1483e;
+    /* ボタンを連打すると中のテキストが選択されてしまうのでそれを無効化するのが以下↓ */
+    user-select: none;
+}
+
+#btn:hover{
+    opacity: .9;
+}
+
+/* :active擬似要素はクリックされたときのスタイルを指定することができる */
+#btn:active{
+    box-shadow: 0 5px #d1483e;
+    margin-top: 35px;
+}
